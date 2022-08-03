@@ -5,5 +5,6 @@ import os
 
 load_dotenv()
 BOT_TOKEN = os.environ['BOT_TOKEN']
+CHAT_ID = '@Slezkin_Space'
 bot = telegram.Bot(token=BOT_TOKEN)
-bot.send_message(chat_id='@Slezkin_Space', text='Всем привет! Это тестовое сообщение!')
+bot.send_document(chat_id=CHAT_ID, document=open('images/epic_photo_0.png', 'rb'))
