@@ -3,14 +3,11 @@ from pathlib import Path
 import datetime
 import urllib.parse
 import os.path
-from dotenv import load_dotenv
 
 
 DIRECTORY = 'images'
 
 
-def load_env():
-    load_dotenv()
 
 
 def reading_extension(file_url):
