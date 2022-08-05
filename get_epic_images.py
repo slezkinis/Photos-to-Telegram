@@ -7,7 +7,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
-from main import DIRECTORY
+from main import DIRECTORY, download_file
 
 
 def get_epic_images():
@@ -27,12 +27,10 @@ def get_epic_images():
         params = {
         'api_key': NASA_TOKEN
         }
-        response = requests.get(
-            f'{url}/{date}/png/{image_name}.png',
-            params = params
-        )
-        with open(path, 'wb') as file:
-            file.write(response.content)
+        download_file(
+            f'{url}/{date}/png/{image_name}.png', 
+            params, path
+            )
 
 
 if __name__ == '__main__':

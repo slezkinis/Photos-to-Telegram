@@ -3,7 +3,7 @@ from pathlib import Path
 
 import requests
 
-from main import DIRECTORY
+from main import DIRECTORY, download_file
 
 
 def fetch_spacex_launch(id):
@@ -25,10 +25,7 @@ def fetch_spacex_launch(id):
         if space_photo_url == '':
             break
         path = f'{DIRECTORY}/space_{space_photo_number}.jpg'
-        response = requests.get(space_photo_url)
-        response.raise_for_status()
-        with open(path, 'wb') as file:
-            file.write(response.content)
+        download_file(space_photo_url, params, path)
 
 
 if __name__ == '__main__':    
