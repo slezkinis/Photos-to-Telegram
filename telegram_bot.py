@@ -8,12 +8,12 @@ import argparse
 from main import DIRECTORY
 
 
-BOT_TOKEN = os.environ['BOT_TOKEN']
+TG_TOKEN = os.environ['TG_TOKEN']
 CHAT_ID = '@Slezkin_Space'
-bot = telegram.Bot(token=BOT_TOKEN)
+bot = telegram.Bot(token=TG_TOKEN)
 
 def send_photos(time_delay):
-    for root, dirs, files in os.walk('images'):
+    for root, dirs, files in os.walk(DIRECTORY):
         while True:
             for image in files:
                 bot.send_document(chat_id=CHAT_ID, document=open(f'{root}/{image}', 'rb'))
