@@ -1,6 +1,5 @@
 import argparse
 from pathlib import Path
-from pprint import pprint
 import datetime
 import os
 

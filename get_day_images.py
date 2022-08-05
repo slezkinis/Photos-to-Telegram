@@ -1,9 +1,9 @@
 import argparse
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 import requests
-from dotenv import load_dotenv
 
 from main import DIRECTORY, reading_extension, download_file
 

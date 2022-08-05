@@ -7,7 +7,6 @@ import argparse
 from main import DIRECTORY
 
 
-load_dotenv()
 BOT_TOKEN = os.environ['BOT_TOKEN']
 CHAT_ID = '@Slezkin_Space'
 bot = telegram.Bot(token=BOT_TOKEN)
@@ -23,6 +22,7 @@ def send_photo(photo):
 
 
 if __name__ == '__main__':
+    load_dotenv()
     parser = argparse.ArgumentParser(description='Программа отправляет фотографию из папки images')
     parser.add_argument('-p', '--photo', help='Фото, которое нужно отправить', 
                         default='')

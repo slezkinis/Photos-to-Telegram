@@ -3,6 +3,7 @@ from pathlib import Path
 import datetime
 import urllib.parse
 import os.path
+from dotenv import load_dotenv
 
 
 DIRECTORY = 'images'
@@ -26,4 +27,5 @@ def download_file(url, params, path):
 
     
 if __name__ == '__main__':
+    load_dotenv()
     Path(DIRECTORY).mkdir(parents=True, exist_ok=True)
