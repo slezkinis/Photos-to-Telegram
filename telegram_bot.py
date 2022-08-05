@@ -1,3 +1,4 @@
+from logging import exception
 import telegram
 from dotenv import load_dotenv
 import os
@@ -8,22 +9,26 @@ import argparse
 from main import DIRECTORY
 
 
-TG_TOKEN = os.environ['TG_TOKEN']
-CHAT_ID = '@Slezkin_Space'
-bot = telegram.Bot(token=TG_TOKEN)
+
 
 def send_photos(time_delay):
     for root, dirs, files in os.walk(DIRECTORY):
         while True:
-            for image in files:
-                bot.send_document(chat_id=CHAT_ID, document=open(f'{root}/{image}', 'rb'))
-                time.sleep(time_delay)
-            random.shuffle(files)
+            try:
+                for image in files:
+                    bot.send_document(chat_id=chat_id, document=open(f'{root}/{image}', 'rb'))
+                    time.sleep(time_delay)
+                random.shuffle(files)
+            except telegram.error.NetworkError:
+                time.sleep(2)
 
 
 
 if __name__ == '__main__':
     load_dotenv()
+    tg_token = os.environ['TG_TOKEN']
+    chat_id = '@Slezkin_Space'
+    bot = telegram.Bot(token=tg_token)
     parser = argparse.ArgumentParser(description='Программа отправляет фотографии из папки images')
     parser.add_argument('-d', '--delay', help='Время ожидания', 
                         default=os.environ['DELAY'], type=int)
