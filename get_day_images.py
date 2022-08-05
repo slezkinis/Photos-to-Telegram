@@ -7,10 +7,10 @@ import requests
 
 from main import DIRECTORY, reading_extension, download_file
 
-def get_day_photos():
+def get_day_photos(nasa_token):
     api_url = 'https://api.nasa.gov/planetary/apod'
     params = {
-        'api_key': NASA_TOKEN,
+        'api_key': nasa_token,
         'count': 30
              }
     response = requests.get(api_url, params=params)
@@ -29,4 +29,4 @@ if __name__ == '__main__':
     Path(DIRECTORY).mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(description='Программа скачивает популярные фотографии из космоса')
     args = parser.parse_args()
-    get_day_photos()
+    get_day_photos(NASA_TOKEN)

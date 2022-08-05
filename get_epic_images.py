@@ -9,10 +9,10 @@ from dotenv import load_dotenv
 from main import DIRECTORY, download_file
 
 
-def get_epic_images():
+def get_epic_images(nasa_token):
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     params = {
-        'api_key': NASA_TOKEN
+        'api_key': nasa_token
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
@@ -24,7 +24,7 @@ def get_epic_images():
         image_name = image['image']
         path = f'{DIRECTORY}/epic_photo_{photo_number}.png'
         params = {
-        'api_key': NASA_TOKEN
+        'api_key': nasa_token
         }
         download_file(
             f'{url}/{date}/png/{image_name}.png', 
@@ -38,4 +38,4 @@ if __name__ == '__main__':
     Path(DIRECTORY).mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(description='Программа скачивает фото Земли из космоса')
     args = parser.parse_args()
-    get_epic_images()    
+    get_epic_images(NASA_TOKEN)    
