@@ -15,7 +15,6 @@ def reading_extension(file_url):
     encoded_string = urllib.parse.unquote(file_url)
     url_parts = urllib.parse.urlsplit(encoded_string)
     path = url_parts.path
-    # (path_to_file, file_name)= os.path.split(path)
     (file_path, file_extension) = os.path.splitext(path)
     return file_extension
 
