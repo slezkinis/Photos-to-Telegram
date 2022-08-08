@@ -21,3 +21,7 @@ def download_file(url, params, path):
     response = requests.get(url, params=params)
     with open(path, 'wb') as file:
         file.write(response.content)
+
+def collecting_files(directory):
+    for root, dirs, files in os.walk(directory):
+        return files

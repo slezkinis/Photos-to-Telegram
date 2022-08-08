@@ -4,14 +4,14 @@ import os
 import random
 import argparse
 
-from supporting_file import DIRECTORY
+from supporting_file import DIRECTORY, collecting_files
 
 
 def send_photo(photo):
     if photo == '':
-        for root, dirs, files in os.walk('images'):
-            image = random.choice(files)
-            bot.send_document(chat_id=chat_id, document=open(f'{root}/{image}', 'rb'))
+        files = collecting_files(DIRECTORY)
+        image = random.choice(files)
+        bot.send_document(chat_id=chat_id, document=open(f'{DIRECTORY}/{image}', 'rb'))
     else:
         bot.send_document(chat_id=chat_id, document=open(f'{DIRECTORY}/{photo}', 'rb'))
 

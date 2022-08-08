@@ -5,21 +5,21 @@ import random
 import time
 import argparse
 
-from supporting_file import DIRECTORY
+from supporting_file import DIRECTORY, collecting_files
 
 
 
 
 def send_photos(time_delay):
-    for root, dirs, files in os.walk(DIRECTORY):
-        while True:
-            try:
-                for image in files:
-                    bot.send_document(chat_id=chat_id, document=open(f'{root}/{image}', 'rb'))
-                    time.sleep(time_delay)
-                random.shuffle(files)
-            except telegram.error.NetworkError:
-                time.sleep(2)
+    files = collecting_files(DIRECTORY)
+    while True:
+        try:
+            for image in files:
+                bot.send_document(chat_id=chat_id, document=open(f'{DIRECTORY}/{image}', 'rb'))
+                time.sleep(time_delay)
+            random.shuffle(files)
+        except telegram.error.NetworkError:
+            time.sleep(2)
 
 
 
