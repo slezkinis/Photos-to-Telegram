@@ -4,7 +4,7 @@ import os
 import random
 import argparse
 
-from main import DIRECTORY
+from supporting_file import DIRECTORY
 
 
 def send_photo(photo):

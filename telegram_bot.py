@@ -5,7 +5,7 @@ import random
 import time
 import argparse
 
-from main import DIRECTORY
+from supporting_file import DIRECTORY
 
 
 

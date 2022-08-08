@@ -3,7 +3,7 @@ from pathlib import Path
 
 import requests
 
-from main import DIRECTORY, download_file
+from supporting_file import DIRECTORY, download_file
 
 
 def fetch_spacex_launch(id):

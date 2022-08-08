@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 import requests
 
-from main import DIRECTORY, reading_extension, download_file
+from supporting_file import DIRECTORY, reading_extension, download_file
 
 def get_day_photos(nasa_token):
     api_url = 'https://api.nasa.gov/planetary/apod'
