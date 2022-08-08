@@ -7,22 +7,20 @@ import argparse
 from main import DIRECTORY
 
 
-TG_TOKEN = os.environ['TG_TOKEN']
-CHAT_ID = '@Slezkin_Space'
-bot = telegram.Bot(token=TG_TOKEN)
-
-
 def send_photo(photo):
     if photo == '':
         for root, dirs, files in os.walk('images'):
             image = random.choice(files)
-            bot.send_document(chat_id=CHAT_ID, document=open(f'{root}/{image}', 'rb'))
+            bot.send_document(chat_id=chat_id, document=open(f'{root}/{image}', 'rb'))
     else:
-        bot.send_document(chat_id=CHAT_ID, document=open(f'{DIRECTORY}/{photo}', 'rb'))
+        bot.send_document(chat_id=chat_id, document=open(f'{DIRECTORY}/{photo}', 'rb'))
 
 
 if __name__ == '__main__':
     load_dotenv()
+    tg_token = os.environ['TG_TOKEN']
+    chat_id = '@Slezkin_Space'
+    bot = telegram.Bot(token=tg_token)
     parser = argparse.ArgumentParser(description='Программа отправляет фотографию из папки images')
     parser.add_argument('-p', '--photo', help='Фото, которое нужно отправить', 
                         default='')
