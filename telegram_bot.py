@@ -31,6 +31,6 @@ if __name__ == '__main__':
     bot = telegram.Bot(token=tg_token)
     parser = argparse.ArgumentParser(description='Программа отправляет фотографии из папки images')
     parser.add_argument('-d', '--delay', help='Время ожидания', 
-                        default=os.environ['DELAY'], type=int)
+                        default=3600, type=int)
     args = parser.parse_args()
     send_photos(args.delay)
