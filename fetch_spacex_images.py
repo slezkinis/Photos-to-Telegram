@@ -9,23 +9,17 @@ from main import DIRECTORY, download_file
 def fetch_spacex_launch(id):
     if id == '':
         api_url='https://api.spacexdata.com/v5/launches/latest'
-        params = {}
     else:
-        api_url = 'https://api.spacexdata.com/v3/launches'
-        params = {'flight_id': id}
-    response = requests.get(api_url, params=params)
+        api_url = f'https://api.spacexdata.com/v5/launches/{id}'
+    response = requests.get(api_url)
     response.raise_for_status()
     launch = response.json()
-    if id == '':
-        photo_urls = launch['links']['flickr']['original']
-    else:
-        launch = dict(*launch)
-        photo_urls = launch['links']['flickr_images']
+    photo_urls = launch['links']['flickr']['original']
     for space_photo_number, space_photo_url in enumerate(photo_urls):
         if space_photo_url == '':
             break
         path = f'{DIRECTORY}/space_{space_photo_number}.jpg'
-        download_file(space_photo_url, params, path)
+        download_file(space_photo_url, {}, path)
 
 
 if __name__ == '__main__':    
