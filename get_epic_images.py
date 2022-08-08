@@ -22,7 +22,7 @@ def get_epic_images(nasa_token):
         date = datetime.datetime.fromisoformat(image['date'])
         date = date.strftime("%Y/%m/%d")
         image_name = image['image']
-        path = f'{DIRECTORY}/epic_photo_{photo_number}.png'
+        path = os.path.join(DIRECTORY, f'epic_photo_{photo_number}.png')
         params = {
         'api_key': nasa_token
         }

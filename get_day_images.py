@@ -19,7 +19,7 @@ def get_day_photos(nasa_token):
     for day_photo_number, day_photo in enumerate(launches):
         if day_photo['media_type'] != 'video':
             extension = reading_extension(day_photo['url'])
-            path = f'{DIRECTORY}/nasa_apod_{day_photo_number}{extension}'
+            path = os.path.join(DIRECTORY, f'nasa_apod_{day_photo_number}{extension}')
             download_file(day_photo['url'], params, path)
 
 

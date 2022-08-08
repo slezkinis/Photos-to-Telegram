@@ -15,7 +15,7 @@ def send_photos(time_delay):
     while True:
         try:
             for image in files:
-                with open(open(f'{DIRECTORY}/{image}', 'rb')) as file:
+                with open(os.path.join(DIRECTORY, image), 'rb') as file:
                     bot.send_document(chat_id=chat_id, document=file)
                 time.sleep(time_delay)
             random.shuffle(files)
