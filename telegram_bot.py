@@ -27,7 +27,7 @@ def send_photos(time_delay):
 if __name__ == '__main__':
     load_dotenv()
     tg_token = os.environ['TG_TOKEN']
-    chat_id = '@Slezkin_Space'
+    chat_id = os.environ['CHAT_ID']
     bot = telegram.Bot(token=tg_token)
     parser = argparse.ArgumentParser(description='Программа отправляет фотографии из папки images')
     parser.add_argument('-d', '--delay', help='Время ожидания', 
