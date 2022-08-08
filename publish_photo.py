@@ -11,9 +11,11 @@ def send_photo(photo):
     if photo == '':
         files = collecting_files(DIRECTORY)
         image = random.choice(files)
-        bot.send_document(chat_id=chat_id, document=open(f'{DIRECTORY}/{image}', 'rb'))
+        with open(f'{DIRECTORY}/{image}', 'rb') as file:
+            bot.send_document(chat_id=chat_id, document=file)
     else:
-        bot.send_document(chat_id=chat_id, document=open(f'{DIRECTORY}/{photo}', 'rb'))
+        with open(f'{DIRECTORY}/{photo}', 'rb') as file:
+            bot.send_document(chat_id=chat_id, document=file)
 
 
 if __name__ == '__main__':

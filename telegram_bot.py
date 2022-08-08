@@ -15,7 +15,8 @@ def send_photos(time_delay):
     while True:
         try:
             for image in files:
-                bot.send_document(chat_id=chat_id, document=open(f'{DIRECTORY}/{image}', 'rb'))
+                with open(open(f'{DIRECTORY}/{image}', 'rb')) as file:
+                    bot.send_document(chat_id=chat_id, document=file)
                 time.sleep(time_delay)
             random.shuffle(files)
         except telegram.error.NetworkError:
