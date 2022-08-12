@@ -2,6 +2,7 @@ import requests
 from pathlib import Path
 import urllib.parse
 import os.path
+import telegram
 
 
 DIRECTORY = 'images'
@@ -25,3 +26,8 @@ def download_file(url, params, path):
 def collecting_files(directory):
     for root, dirs, files in os.walk(directory):
         return files
+
+
+def send_file(path, bot, tg_chat_id):
+    with open(path, 'rb') as file:
+        bot.send_document(chat_id=tg_chat_id, document=file)

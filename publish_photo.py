@@ -4,18 +4,16 @@ import os
 import random
 import argparse
 
-from supporting_file import DIRECTORY, collecting_files
+from supporting_file import DIRECTORY, collecting_files, send_file
 
 
 def send_photo(photo):
     if photo == '':
         files = collecting_files(DIRECTORY)
         image = random.choice(files)
-        with open(os.path.join(DIRECTORY, image), 'rb') as file:
-            bot.send_document(chat_id=tg_chat_id, document=file)
+        send_file(os.path.join(DIRECTORY, image), bot, tg_chat_id)
     else:
-        with open(os.path.join(DIRECTORY, photo), 'rb') as file:
-            bot.send_document(chat_id=tg_chat_id, document=file)
+        send_file(os.path.join(DIRECTORY, photo), bot, tg_chat_id)
 
 
 if __name__ == '__main__':
