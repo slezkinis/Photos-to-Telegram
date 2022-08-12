@@ -16,7 +16,7 @@ def send_photos(time_delay):
         try:
             for image in files:
                 with open(os.path.join(DIRECTORY, image), 'rb') as file:
-                    bot.send_document(chat_id=chat_id, document=file)
+                    bot.send_document(chat_id=tg_chat_id, document=file)
                 time.sleep(time_delay)
             random.shuffle(files)
         except telegram.error.NetworkError:
@@ -27,7 +27,7 @@ def send_photos(time_delay):
 if __name__ == '__main__':
     load_dotenv()
     tg_token = os.environ['TG_TOKEN']
-    chat_id = os.environ['CHAT_ID']
+    tg_chat_id = os.environ['TG_CHAT_ID']
     bot = telegram.Bot(token=tg_token)
     parser = argparse.ArgumentParser(description='Программа отправляет фотографии из папки images')
     parser.add_argument('-d', '--delay', help='Время ожидания', 

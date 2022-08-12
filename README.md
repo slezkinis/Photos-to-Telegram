@@ -8,7 +8,7 @@
 ```
 NASA_TOKEN=[Ваш Nasa токен]
 TG_TOKEN=[Токен бота]
-CHAT_ID=[ID канала]
+TG_CHAT_ID=[ID канала]
 ```
 
 2. Python3 должен быть уже установлен. 
