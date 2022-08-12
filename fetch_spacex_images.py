@@ -14,8 +14,6 @@ def fetch_spacex_launch(launch_id):
     launch = response.json()
     photo_urls = launch['links']['flickr']['original']
     for space_photo_number, space_photo_url in enumerate(photo_urls):
-        if space_photo_url == '':
-            break
         path = os.path.join(DIRECTORY, f'space_{space_photo_number}.jpg')
         download_file(space_photo_url, {}, path)
 
