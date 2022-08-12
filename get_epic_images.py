@@ -31,8 +31,9 @@ def get_epic_images(nasa_token):
 
 if __name__ == '__main__':
     load_dotenv()
-    NASA_TOKEN=os.environ['NASA_TOKEN']
+    nasa_token=os.environ['NASA_TOKEN']
     Path(DIRECTORY).mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(description='Программа скачивает фото Земли из космоса')
     args = parser.parse_args()
-    get_epic_images(NASA_TOKEN)    
+    get_epic_images(nasa_token)
+    
