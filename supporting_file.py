@@ -24,8 +24,8 @@ def download_file(url, params, path):
         file.write(response.content)
 
 def collecting_files(directory):
-    for root, dirs, files in os.walk(directory):
-        return files
+    files = os.listdir(directory)
+    return files
 
 
 def send_file(path, bot, tg_chat_id):
