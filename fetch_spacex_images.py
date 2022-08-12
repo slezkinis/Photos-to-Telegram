@@ -7,11 +7,11 @@ import requests
 from supporting_file import DIRECTORY, download_file
 
 
-def fetch_spacex_launch(id):
-    if id == '':
+def fetch_spacex_launch(launch_id):
+    if launch_id == '':
         api_url='https://api.spacexdata.com/v5/launches/latest'
     else:
-        api_url = f'https://api.spacexdata.com/v5/launches/{id}'
+        api_url = f'https://api.spacexdata.com/v5/launches/{launch_id}'
     response = requests.get(api_url)
     response.raise_for_status()
     launch = response.json()
