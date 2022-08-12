@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import logging
 
 import requests
 
@@ -17,10 +18,12 @@ def get_day_photos(nasa_token):
     response.raise_for_status()
     launches = response.json()
     for photo_number, photo in enumerate(launches):
-        if photo['media_type'] != 'video':
+        if photo['media_type'] != 'video' and photo['media_type'] != 'other':
             extension = reading_extension(photo['url'])
             path = os.path.join(DIRECTORY, f'nasa_apod_{photo_number}{extension}')
             download_file(photo['url'], params, path)
+        else:
+            logging.warning(f'{photo["media_type"]} - неподдерживаемый тип данных!')
 
 
 if __name__ == '__main__':
@@ -30,4 +33,3 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Программа скачивает популярные фотографии из космоса')
     args = parser.parse_args()
     get_day_photos(nasa_token)
-    
