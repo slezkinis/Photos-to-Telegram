@@ -21,8 +21,10 @@ if __name__ == '__main__':
     tg_token = os.environ['TG_TOKEN']
     tg_chat_id = os.environ['TG_CHAT_ID']
     bot = telegram.Bot(token=tg_token)
-    parser = argparse.ArgumentParser(description='Программа отправляет фотографию из папки images')
-    parser.add_argument('-p', '--photo', help='Фото, которое нужно отправить', 
+    parser = argparse.ArgumentParser(
+        description='Программа отправляет фотографию из папки images'
+        )
+    parser.add_argument('-p', '--photo', help='Фото, которое нужно отправить',
                         default='')
     args = parser.parse_args()
     send_photo(args.photo)

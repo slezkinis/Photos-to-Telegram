@@ -15,16 +15,20 @@ def fetch_spacex_launch(launch_id):
     launch = response.json()
     photo_urls = launch['links']['flickr']['original']
     if photo_urls == []:
-        logging.warning('В папку images ничего не скачалось, так как не было получено ни одного файла!')
+        logging.warning(
+            'В папку ничего не скачалось, т.к. было получено 0 файлов!'
+        )
     for photo_number, photo_url in enumerate(photo_urls):
         path = os.path.join(DIRECTORY, f'space_{photo_number}.jpg')
         download_file(photo_url, {}, path)
 
 
-if __name__ == '__main__':    
+if __name__ == '__main__':
     Path(DIRECTORY).mkdir(parents=True, exist_ok=True)
-    parser = argparse.ArgumentParser(description='Программа скачивает фотографии с запуска ракет от компании SpaceX')
-    parser.add_argument('-i', '--id', help='ID запуска', 
-                        default= 'latest')
+    parser = argparse.ArgumentParser(
+        description='Программа скачивает фотографии с запуска ракет.'
+        )
+    parser.add_argument('-i', '--id', help='ID запуска',
+                        default='latest')
     args = parser.parse_args()
     fetch_spacex_launch(args.id)

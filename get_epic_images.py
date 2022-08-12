@@ -24,16 +24,17 @@ def get_epic_images(nasa_token):
         image_name = image['image']
         path = os.path.join(DIRECTORY, f'epic_photo_{photo_number}.png')
         download_file(
-            f'{url}/{date}/png/{image_name}.png', 
+            f'{url}/{date}/png/{image_name}.png',
             params, path
             )
 
 
 if __name__ == '__main__':
     load_dotenv()
-    nasa_token=os.environ['NASA_TOKEN']
+    nasa_token = os.environ['NASA_TOKEN']
     Path(DIRECTORY).mkdir(parents=True, exist_ok=True)
-    parser = argparse.ArgumentParser(description='Программа скачивает фото Земли из космоса')
+    parser = argparse.ArgumentParser(
+        description='Программа скачивает фото Земли из космоса'
+        )
     args = parser.parse_args()
     get_epic_images(nasa_token)
-    

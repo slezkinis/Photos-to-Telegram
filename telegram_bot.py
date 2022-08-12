@@ -8,8 +8,6 @@ import argparse
 from supporting_file import DIRECTORY, collecting_files, send_file
 
 
-
-
 def send_photos(time_delay):
     files = collecting_files(DIRECTORY)
     while True:
@@ -22,14 +20,15 @@ def send_photos(time_delay):
             time.sleep(2)
 
 
-
 if __name__ == '__main__':
     load_dotenv()
     tg_token = os.environ['TG_TOKEN']
     tg_chat_id = os.environ['TG_CHAT_ID']
     bot = telegram.Bot(token=tg_token)
-    parser = argparse.ArgumentParser(description='Программа отправляет фотографии из папки images')
-    parser.add_argument('-d', '--delay', help='Время ожидания', 
+    parser = argparse.ArgumentParser(
+        description='Программа отправляет фотографии из папки images'
+        )
+    parser.add_argument('-d', '--delay', help='Время ожидания',
                         default=3600, type=int)
     args = parser.parse_args()
     send_photos(args.delay)

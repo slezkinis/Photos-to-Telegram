@@ -8,6 +8,7 @@ import requests
 
 from supporting_file import DIRECTORY, reading_extension, download_file
 
+
 def get_day_photos(nasa_token):
     api_url = 'https://api.nasa.gov/planetary/apod'
     params = {
@@ -20,16 +21,23 @@ def get_day_photos(nasa_token):
     for photo_number, photo in enumerate(launches):
         if photo['media_type'] != 'video' and photo['media_type'] != 'other':
             extension = reading_extension(photo['url'])
-            path = os.path.join(DIRECTORY, f'nasa_apod_{photo_number}{extension}')
+            path = os.path.join(
+                DIRECTORY,
+                f'nasa_apod_{photo_number}{extension}'
+                )
             download_file(photo['url'], params, path)
         else:
-            logging.warning(f'{photo["media_type"]} - неподдерживаемый тип данных!')
+            logging.warning(
+                f'{photo["media_type"]} - неподдерживаемый тип данных!'
+                )
 
 
 if __name__ == '__main__':
     load_dotenv()
-    nasa_token=os.environ['NASA_TOKEN']
+    nasa_token = os.environ['NASA_TOKEN']
     Path(DIRECTORY).mkdir(parents=True, exist_ok=True)
-    parser = argparse.ArgumentParser(description='Программа скачивает популярные фотографии из космоса')
+    parser = argparse.ArgumentParser(
+        description='Программа скачивает популярные фотографии из космоса'
+        )
     args = parser.parse_args()
     get_day_photos(nasa_token)
