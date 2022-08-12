@@ -16,11 +16,11 @@ def get_day_photos(nasa_token):
     response = requests.get(api_url, params=params)
     response.raise_for_status()
     launches = response.json()
-    for day_photo_number, day_photo in enumerate(launches):
-        if day_photo['media_type'] != 'video':
-            extension = reading_extension(day_photo['url'])
-            path = os.path.join(DIRECTORY, f'nasa_apod_{day_photo_number}{extension}')
-            download_file(day_photo['url'], params, path)
+    for photo_number, photo in enumerate(launches):
+        if photo['media_type'] != 'video':
+            extension = reading_extension(photo['url'])
+            path = os.path.join(DIRECTORY, f'nasa_apod_{photo_number}{extension}')
+            download_file(photo['url'], params, path)
 
 
 if __name__ == '__main__':
