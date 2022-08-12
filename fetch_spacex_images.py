@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 import os.path
+import logging
 
 import requests
 
@@ -13,6 +14,8 @@ def fetch_spacex_launch(launch_id):
     response.raise_for_status()
     launch = response.json()
     photo_urls = launch['links']['flickr']['original']
+    if photo_urls == []:
+        logging.warning('В папку images ничего не скачалось, так как не было получено ни одного файла!')
     for photo_number, photo_url in enumerate(photo_urls):
         path = os.path.join(DIRECTORY, f'space_{photo_number}.jpg')
         download_file(photo_url, {}, path)
