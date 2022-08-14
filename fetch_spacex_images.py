@@ -14,7 +14,7 @@ def fetch_spacex_launch(launch_id):
     response.raise_for_status()
     launch = response.json()
     photo_urls = launch['links']['flickr']['original']
-    if photo_urls == []:
+    if not photo_urls:
         logging.warning(
             'В папку ничего не скачалось, т.к. было получено 0 файлов!'
         )

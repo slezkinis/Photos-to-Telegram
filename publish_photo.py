@@ -8,12 +8,10 @@ from supporting_file import DIRECTORY, collecting_files, send_file
 
 
 def send_photo(photo):
-    if photo == '':
+    if not photo:
         files = collecting_files(DIRECTORY)
-        image = random.choice(files)
-        send_file(os.path.join(DIRECTORY, image), bot, tg_chat_id)
-    else:
-        send_file(os.path.join(DIRECTORY, photo), bot, tg_chat_id)
+        photo = random.choice(files)
+    send_file(os.path.join(DIRECTORY, photo), bot, tg_chat_id)
 
 
 if __name__ == '__main__':

@@ -19,18 +19,13 @@ def get_day_photos(nasa_token):
     response.raise_for_status()
     launches = response.json()
     for photo_number, photo in enumerate(launches):
-        if photo['media_type'] != 'video' and photo['media_type'] != 'other':
+        if photo['media_type'] == 'image':
             extension = reading_extension(photo['url'])
             path = os.path.join(
                 DIRECTORY,
                 f'nasa_apod_{photo_number}{extension}'
                 )
             download_file(photo['url'], params, path)
-        else:
-            logging.warning(
-                f'{photo["media_type"]} - неподдерживаемый тип данных!'
-                )
-
 
 if __name__ == '__main__':
     load_dotenv()
